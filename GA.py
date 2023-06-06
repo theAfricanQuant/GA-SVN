@@ -393,18 +393,18 @@ class genetic_algo:
     def crossover(self):
         no=int(round(self.k_crossover*len(self.population),0))
         if no%2==1:
-            no=no+1
-        
+            no += 1
+
         rand=random.sample(range(len(self.population)),no)
-        
+
         for i in range(no/2):
             index_first_chromosome=rand[2*i]
             index_second_chromosome=rand[2*i+1]
-            
+
             position=random.randint(0,len(self.new_population[0])-1)
             x=self.new_population[index_first_chromosome][position]
             y=self.new_population[index_second_chromosome][position]
-            
+
             self.new_population[index_first_chromosome][position]=y
             self.new_population[index_second_chromosome][position]=x
     
@@ -414,9 +414,8 @@ class genetic_algo:
         for i in range(no):
             index=rand[i]
             position=random.randint(0,len(self.new_population[0])-1)
-            assert self.new_population[index][position]==True or self.new_population[index][position]==False
-            if self.new_population[index][position]==True:
-                self.new_population[index][position]=False
-            else:
-                self.new_population[index][position]=True
+            assert self.new_population[index][position] in [True, False]
+            self.new_population[index][position] = (
+                self.new_population[index][position] != True
+            )
                 

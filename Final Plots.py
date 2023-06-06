@@ -6,6 +6,7 @@ Created on Sun Jul 16 22:40:21 2017
 @author: shashank
 """
 
+
 import matplotlib.pyplot as plt
 from sklearn.metrics import precision_recall_curve
 from sklearn.metrics import average_precision_score
@@ -14,9 +15,7 @@ import numpy as np
 
 
 lw=2
-accuracies=[]
-for i in range(len(sol_50_50)):
-    accuracies.append(sol_50_50[i][3])
+accuracies = [sol_50_50[i][3] for i in range(len(sol_50_50))]
 ind=np.argmax(accuracies)
 y_test=sol_50_50[ind][9]
 y_test = label_binarize(y_test, classes=['B','M'])
@@ -24,9 +23,7 @@ y_score=sol_50_50[ind][10]
 precision_plot_50_50, recall_plot_50_50, _ = precision_recall_curve(y_test,y_score)
 average_precision_plot_50_50 = average_precision_score(y_test, y_score)
 
-accuracies=[]
-for i in range(len(sol_60_40)):
-    accuracies.append(sol_60_40[i][3])
+accuracies = [sol_60_40[i][3] for i in range(len(sol_60_40))]
 ind=np.argmax(accuracies)
 y_test=sol_60_40[ind][9]
 y_test = label_binarize(y_test, classes=['B','M'])
@@ -34,9 +31,7 @@ y_score=sol_60_40[ind][10]
 precision_plot_60_40, recall_plot_60_40, _ = precision_recall_curve(y_test,y_score)
 average_precision_plot_60_40 = average_precision_score(y_test, y_score)
 
-accuracies=[]
-for i in range(len(sol_70_30)):
-    accuracies.append(sol_70_30[i][3])
+accuracies = [sol_70_30[i][3] for i in range(len(sol_70_30))]
 ind=np.argmax(accuracies)
 y_test=sol_70_30[ind][9]
 y_test = label_binarize(y_test, classes=['B','M'])
