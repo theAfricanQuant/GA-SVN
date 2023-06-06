@@ -13,9 +13,7 @@ from sklearn.preprocessing import label_binarize
 import numpy as np
 
 def plot_graph(sol):
-    accuracies=[]
-    for i in range(len(sol)):
-        accuracies.append(sol[i][3])
+    accuracies = [sol[i][3] for i in range(len(sol))]
     ind=np.argmax(accuracies)
     y_test=sol[ind][9]
     y_test = label_binarize(y_test, classes=['B','M'])
@@ -38,9 +36,9 @@ def plot_graph(sol):
     plt.title('Precision-Recall: AUC={0:0.2f}'.format(average_precision_plot))
     plt.legend(loc="lower left")
     plt.show()
-    
+
     ###############################################################################
-    
+
     plt.clf()
     plt.plot(recall_micro, precision_micro, color='gold', lw=lw,
          label='micro-average Precision-recall curve (area = {0:0.2f})'
@@ -66,7 +64,7 @@ def plot_graph(sol):
     precision_micro, recall_micro, _ = precision_recall_curve(y_test.ravel(),y_score.ravel())
     average_precision_micro = average_precision_score(y_test, y_score,average="micro")
     lw = 2
-    
+
     # Plot Precision-Recall curve
     plt.clf()
     plt.plot(recall_plot, precision_plot, lw=lw, color='navy',
@@ -89,7 +87,7 @@ def plot_graph(sol):
     precision_plot, recall_plot, _ = precision_recall_curve(y_test,
                                                             y_score)
     average_precision_plot = average_precision_score(y_test, y_score)
-    
+
     # Compute micro-average ROC curve and ROC area
     precision_micro, recall_micro, _ = precision_recall_curve(y_test.ravel(),
                                                               y_score.ravel())
@@ -108,7 +106,7 @@ def plot_graph(sol):
     plt.title('Precision-Recall: AUC={0:0.2f}'.format(average_precision_plot))
     plt.legend(loc="lower left")
     plt.show()
-    
+
     ###############################################################################
     for i, color in zip(range(n_classes), colors):
         plt.plot(recall[i], precision[i], color=color, lw=lw,
